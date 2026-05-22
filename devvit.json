@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "ruleroom",
+  "permissions": {
+    "redis": true,
+    "reddit": {
+      "enable": true,
+      "scope": "moderator"
+    }
+  },
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "index.html",
+        "height": "tall"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.js"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Check Precedent",
+        "description": "Compare this post or comment with saved RuleRoom precedents.",
+        "forUserType": "moderator",
+        "location": [
+          "post",
+          "comment"
+        ],
+        "endpoint": "/internal/menu/check-precedent",
+        "postFilter": "none"
+      }
+    ]
+  },
+  "dev": {
+    "subreddit": "ruleroomtest"
+  },
+  "scripts": {
+    "dev": "node ./node_modules/vite/bin/vite.js --host 127.0.0.1",
+    "build": "node ./scripts/build-devvit.mjs"
+  }
+}
